@@ -12,7 +12,7 @@ import { MiniDialogoComponent } from './components/mini-dialogo/mini-dialogo.com
 })
 
 export class InscripcionesComponent {
-  nombreCurso = '';
+  listaAlumnos = '';
 
   displayedColumns: string[] = ['id', 'name', 'curso', 'clase', 'startDate', 'endDate', 'actions'];
   dataSource: Estudiantes[] = [
@@ -52,7 +52,7 @@ export class InscripcionesComponent {
   openDialog(): void {
     this.matDialog.open(DialogoComponent).afterClosed().subscribe({
       next: (value) => {        
-        this.nombreCurso = value.name;
+        this.listaAlumnos = value.name;
 
         value['id'] = generarId(2);
         value['clase'] = generarClase(4);
@@ -61,17 +61,17 @@ export class InscripcionesComponent {
     });
   }
 
-  modificarAlumno(editarCurso: Estudiantes) {
-    this.matDialog.open(DialogoComponent, {data: editarCurso}).afterClosed().subscribe({
+  modificarAlumno(editarAlumno: Estudiantes) {
+    this.matDialog.open(DialogoComponent, {data: editarAlumno}).afterClosed().subscribe({
       next: (value) => {
         if(!!value) {
-          this.dataSource = this.dataSource.map((el) => el.id === editarCurso.id ? {...value, id:editarCurso.id} : el);
+          this.dataSource = this.dataSource.map((el) => el.id === editarAlumno.id ? {...value, id:editarAlumno.id} : el);
         }
       }
     });
   }
 
-  borrarCursoById(id: number): void {
+  borrarAlumnoById(id: number): void {
     this.matDialog.open(MiniDialogoComponent).afterClosed().subscribe({
       next:
         () => this.dataSource = this.dataSource.filter((el) => el.id != id)

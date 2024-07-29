@@ -3,7 +3,13 @@
     <mat-drawer #drawer class="example-sidenav bg-color" mode="side">
         <mat-nav-list>
             <a mat-list-item>Inicio</a>
-            <a mat-list-item>Cursos</a>
+
+            <a mat-list-item
+            routerLink="cursos"
+            routerLinkActive
+            #cursosLink="routerLinkActive"
+            [activated]="cursosLink.isActive">Cursos</a>
+            
             <a mat-list-item>Alumnos</a>
             
             <a mat-list-item
