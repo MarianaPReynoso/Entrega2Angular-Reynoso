@@ -23,7 +23,7 @@ constructor(
   })
 }
 
-onSubmit(): void {
+agregarCurso(): void {
   if(this.cursoForm.valid) {
     this.matDialogRef.close(this.cursoForm.value);
   } else {}

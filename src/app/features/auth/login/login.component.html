@@ -5,7 +5,7 @@
         </mat-card-header>
 
         <mat-card-content>
-            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <form [formGroup]="loginForm">
                 <mat-form-field appearance="outline" class="cajones">
                     <mat-label>Email</mat-label>
                     <input matInput>
@@ -15,7 +15,7 @@
                 <mat-form-field appearance="outline" class="cajones">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [type]="hide() ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+                    <button mat-icon-button matSuffix (click)="esconder($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
                         <mat-icon matSuffix>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
@@ -28,7 +28,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <button type="submit" class="cajones" routerLink="/dashboard/inscripciones" mat-flat-button>
+                <button type="submit" (ngSubmit)="onSubmit()" class="cajones" routerLink="/dashboard/inscripciones" mat-flat-button>
                     Iniciar Sesión
                 </button>
             </form>

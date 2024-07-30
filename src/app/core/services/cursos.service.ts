@@ -45,6 +45,13 @@ export class CursosService {
         }
     ];
 
+    editarCursotById(id: string, update: Partial<CursosDisponibles>) {
+        this.DATABASE = this.DATABASE.map((c) =>
+            c.id === id ? { ...c, ...update } : c
+        );
+        return id;
+    };
+
     borrarCursoById(id: string) {
         this.DATABASE = this.DATABASE.filter((c) => c.id !== id);
         return id;

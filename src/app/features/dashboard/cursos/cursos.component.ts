@@ -17,8 +17,10 @@ export class CursosComponent { //implements OnInit {
   listaCursos = '';
   cursosDisponibles: CursosDisponibles[] = [];
   displayedColumns: string[] = ['id', 'nombre', 'inicio', 'fin', 'acciones'];
-  dataSource!: any[];
-  // cursosForm: FormGroup
+  dataSource!: CursosService[];
+  cursosForm!: FormGroup;
+
+  editarCurso!: CursosDisponibles;
 
   constructor(
     // private fb: FormBuilder,
@@ -36,6 +38,12 @@ export class CursosComponent { //implements OnInit {
       }
     })
   }
+
+  modificarCurso(editarCurso: CursosDisponibles) {
+    this.editarCurso = editarCurso;
+    this.cursosForm.patchValue(editarCurso);
+    }
+  
 
   borrarCurso(id: string) {
     if (confirm('¿Desea borrar el curso?')) {
