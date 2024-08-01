@@ -4,6 +4,7 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { InscripcionesComponent } from './features/dashboard/inscripciones/inscripciones.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { CursosComponent } from './features/dashboard/cursos/cursos.component';
+import { DetallesCursoComponent } from './features/dashboard/cursos/pages/detalles-curso/detalles-curso.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
       {
         path: 'inscripciones',
         component: InscripcionesComponent
+      },
+
+      {
+        path: 'inscripciones/:id',
+        component: DetallesCursoComponent
       }
     ]
   },

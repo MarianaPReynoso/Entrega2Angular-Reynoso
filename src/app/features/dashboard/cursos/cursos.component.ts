@@ -13,17 +13,53 @@ import { generarId } from '../../shared/utils';
   styleUrl: './cursos.component.scss'
 })
 
-export class CursosComponent { //implements OnInit {
+export class CursosComponent{ //implements OnInit {
   listaCursos = '';
   cursosDisponibles: CursosDisponibles[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'inicio', 'fin', 'acciones'];
-  dataSource!: CursosService[];
-  cursosForm!: FormGroup;
 
+  displayedColumns: string[] = ['id', 'nombre', 'inicio', 'fin', 'acciones'];
+  dataSource: CursosDisponibles[] = [
+    {
+      id: 'DJHN',
+      nombre: 'Angular',
+      inicio: new Date(),
+      fin: new Date(),
+    },
+
+    {
+      id: 'JAHS',
+      nombre: 'ReactJS',
+      inicio: new Date(),
+      fin: new Date(),
+    },
+
+    {
+      id: 'LAÑO',
+      nombre: 'Programación Web',
+      inicio: new Date(),
+      fin: new Date(),
+    },
+
+    {
+      id: 'FHNH',
+      nombre: 'Photoshop',
+      inicio: new Date(),
+      fin: new Date(),
+    },
+
+    {
+      id: 'ERPO',
+      nombre: 'Marketing Digital',
+      inicio: new Date(),
+      fin: new Date(),
+    }
+  ];
+
+  cursosForm!: FormGroup;
   editarCurso!: CursosDisponibles;
 
   constructor(
-    // private fb: FormBuilder,
+    private fb: FormBuilder,
     private cursosService: CursosService,
     private MatDialog: MatDialog
   ){}
@@ -42,8 +78,7 @@ export class CursosComponent { //implements OnInit {
   modificarCurso(editarCurso: CursosDisponibles) {
     this.editarCurso = editarCurso;
     this.cursosForm.patchValue(editarCurso);
-    }
-  
+  }
 
   borrarCurso(id: string) {
     if (confirm('¿Desea borrar el curso?')) {

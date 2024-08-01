@@ -14,8 +14,8 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
     private fb: FormBuilder, 
+    private authService: AuthService,
     @Inject (APP_CONFIG) private appConfig: any
   ) {
     this.loginForm = this.fb.group({
@@ -28,10 +28,20 @@ export class LoginComponent {
   onSubmit(): void {
     if(this.loginForm.invalid) {
       alert('Debe completar los datos solicitados');
-    } else {
-      this.authService.ingresar();
-    }
-  }
+      return;
+    } 
+
+    const {email, contraseña} = this.loginForm.value;
+    this.authService.ingresar(email, contraseña)
+      .then(() =>{})
+      .catch (error => {
+        alert (error);
+      });
+    
+    // else {
+    //   this.authService.ingresar();
+    // }
+  };
 
   hide = signal(true);
 
